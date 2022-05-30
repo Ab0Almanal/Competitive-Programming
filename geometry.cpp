@@ -168,6 +168,21 @@ vector <P> convexHull (vector <P> points) {
     return hull;
 }
 
+bool up (P p) {
+    assert (p.x != 0 || p.y != 0); //argument of 0 0 is undefined
+    
+    return p.y > 0 || (p.y == 0 && p.x < 0);
+}
+
+void polarSort (vector <P> &v) {
+    sort (v.begin(), v.end(), [] (P v1, P v2) {
+        //modify equal angles
+        return make_pair (up (v1), 0ll) < make_pair (up(v2), v1 * v2);
+    });
+    
+    return;
+}
+
 void solve () {
     
     
